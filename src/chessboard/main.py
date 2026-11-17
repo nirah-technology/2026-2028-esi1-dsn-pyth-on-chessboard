@@ -1,4 +1,6 @@
 from .game import Game
+from .moves import StraightMove, DigonalMove
+from src.chessboard.moves import KnightMove
 
 from .board import Board, Clock
 from .pieces import PieceBuilder, Piece, Color
@@ -16,6 +18,18 @@ def main():
         .with_name("Reine")
         .with_value(9)
         .with_color(Color.WHITE)
+        .with_move(StraightMove())
+        .with_move(DigonalMove())
+        .build()
+    )
+
+    builder = PieceBuilder.create()
+    black_knight: Piece = (
+        builder.with_id(2)
+        .with_name("Cavalier Noir")
+        .with_value(3)
+        .with_color(Color.BLACK)
+        .with_move(KnightMove())
         .build()
     )
 
