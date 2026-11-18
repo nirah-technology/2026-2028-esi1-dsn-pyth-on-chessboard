@@ -11,6 +11,10 @@ class Game:
     def __init__(self) -> None:
         self.__status: Status = Status.IDLE
 
+    @property
+    def status(self) -> Status:
+        return self.__status
+
     def to_playing_status(self):
         if self.__status is Status.IDLE:
             self.__status = Status.PLAYING
