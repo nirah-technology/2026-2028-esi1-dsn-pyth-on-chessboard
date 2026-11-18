@@ -1,6 +1,8 @@
+from .engine import AiReferee, AiVirtualPlayer
+
 from .game import Game
 from .moves import StraightMove, DigonalMove
-from src.chessboard.moves import KnightMove
+from .moves import KnightMove
 
 from .board import Board, Clock
 from .pieces import PieceBuilder, Piece, Color
@@ -44,3 +46,8 @@ def main():
     game.to_playing_status()
 
     board.move_piece(0, (0, 0))
+
+    ai_player: AiVirtualPlayer = AiVirtualPlayer()
+    players_scores: dict[str, int] = {}
+    ai_ref: AiReferee = AiReferee(players_scores)
+    ai_ref.start()

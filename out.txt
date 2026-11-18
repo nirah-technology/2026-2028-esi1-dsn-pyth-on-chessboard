@@ -1,0 +1,7 @@
+J'ai joué mon tour.
+Je réffléchie...
+C'est à moi de jouer !!
+J'ai joué mon tour.
+C'est, j'ai fini de jouer.
+Déplacement de la piece: 0 à l'emplacement X: 0, Y: 0
+On a appuyé sur le bouton.
