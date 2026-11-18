@@ -1,5 +1,7 @@
 from threading import Lock
 
+from chessboard.ui import WindowGame
+
 from .board import Board, Clock
 from .engine import AiReferee, AiVirtualPlayer
 from .game import Game
@@ -57,13 +59,16 @@ def main():
     ai_ref.start()
     ai_player.start()
 
-    try:
-        ai_player.join()
-        ai_ref.join()
-    except:
-        pass
+    # try:
+    #     ai_player.join()
+    #     ai_ref.join()
+    # except:
+    #     pass
 
     ai_player.stop()
     ai_ref.stop()
 
     game.to_finished_status()
+
+    gui = WindowGame()
+    gui.display()

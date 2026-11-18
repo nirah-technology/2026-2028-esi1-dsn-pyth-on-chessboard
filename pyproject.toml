@@ -7,7 +7,9 @@ authors = [
     { name = "Nicolas Metivier", email = "nicolas.a.metivier@gmail.com" },
 ]
 requires-python = ">=3.14"
-dependencies = []
+dependencies = [
+    "pygame>=2.6.1",
+]
 
 [project.scripts]
 chessboard = "chessboard.main:main" # chessboard/main.py:main()
