@@ -31,7 +31,7 @@ class AiVirtualPlayer(Thread, AbleToPlayTurnFeature):
                 return
             self.__board.move_piece(2, (2, 3))
             current_score = self.__players_scores.get(self.__player_name, 0)
-            self.__player_name[self.__player_name] = current_score + 1
+            self.__players_scores[self.__player_name] = current_score + 1
 
     @override
     def run(self) -> None:

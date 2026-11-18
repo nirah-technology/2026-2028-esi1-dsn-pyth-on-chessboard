@@ -1,12 +1,11 @@
-from .engine import AiReferee, AiVirtualPlayer
-
-from .game import Game
-from .moves import StraightMove, DigonalMove
-from .moves import KnightMove
+from threading import Lock
 
 from .board import Board, Clock
-from .pieces import PieceBuilder, Piece, Color
+from .engine import AiReferee, AiVirtualPlayer
+from .game import Game
 from .human import Human, HumanProxy
+from .moves import StraightMove, DigonalMove, KnightMove
+from .pieces import PieceBuilder, Piece, Color
 
 
 def main():
@@ -47,7 +46,24 @@ def main():
 
     board.move_piece(0, (0, 0))
 
-    ai_player: AiVirtualPlayer = AiVirtualPlayer()
     players_scores: dict[str, int] = {}
-    ai_ref: AiReferee = AiReferee(players_scores)
+    lock: Lock = Lock()
+
+    ai_player: AiVirtualPlayer = AiVirtualPlayer(
+        name="ia", board=board, game=game, players_scores=players_scores, lock=lock
+    )
+    ai_ref: AiReferee = AiReferee(players_scores=players_scores, lock=lock)
+
     ai_ref.start()
+    ai_player.start()
+
+    try:
+        ai_player.join()
+        ai_ref.join()
+    except:
+        pass
+
+    ai_player.stop()
+    ai_ref.stop()
+
+    game.to_finished_status()
